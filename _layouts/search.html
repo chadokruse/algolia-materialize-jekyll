@@ -1,0 +1,141 @@
+---
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ site.baseurl }}/assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="{{ site.baseurl }}/assets/img/favicon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    {% if jekyll.environment == 'staging' %}
+      <meta name="robots" content="noindex, nofollow">
+    {% endif %}
+
+    <title>Algolia Materialize Jekyll</title>
+    <meta name="description" content="Boilerplate for a simple Jekyll site that uses Materialize for design and Algolia for search">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.2.0/dist/instantsearch.min.css">
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/search.css">    
+
+    <!-- JavaScript -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.2.0/dist/instantsearch.min.js"></script>
+    <script type="text/javascript" src="{{ site.baseurl }}/assets/js/search.js"></script>
+  </head>
+  <body>
+
+    <header>
+      <div class="">
+        <nav class="nav-center white grey-text text-darken-4">
+          <div class="container">
+            <div class="nav-wrapper">
+              <a href="#!" class="brand-logo grey-text text-darken-4"><img src="{{ site.baseurl }}/assets/img/logo.png" alt="Foundation Logo"></a>
+              <ul class="right hide-on-med-and-down">
+                <li><a href="#!" class="grey-text text-darken-4">Link 1</a></li>
+                <li><a href="#!" class="grey-text text-darken-4">Link 2</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="parallax-container overlay">
+        <div class="parallax">
+          <img src="{{ site.baseurl }}/assets/img/bg-search.jpg">
+        </div>
+        <div class="intro valign-wrapper">
+            <div class="intro-text center-align white-text">
+              <h1>Search Our Grants</h1>
+            </div>
+          </div>
+      </div>
+      <div class="nav-search">
+        <nav class="nav-center grey lighten-1 grey-text text-darken-4 z-depth-1">
+          <div class="nav-wrapper">
+            <ul class="ul-center">
+              <li>
+                <div id="search-box"></div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div class="section section-raised z-depth-4 grey lighten-5">
+        <div class="row">
+          <div class="col m3">
+            <div class="ais-root ais-stats">
+              <div class="ais-body ais-stats--body">
+                <div>
+                  Filters
+                </div>
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div class="section">
+                <div class="card">
+                  <div id="refinement-list_tax-year"></div>
+                </div>
+                <div class="card">
+                  <div id="refinement-list_state"></div>
+                </div>
+            </div>
+            <div class="section">
+                
+            </div>
+            <div class="section">
+              <div id="clear-all" class="center-align"></div>
+            </div>
+          </div>
+          <div class="col m9">
+            <div id="stats"></div>
+            <div class="divider"></div>
+            <div class="section">
+              <div id="hits"></div>
+            </div>
+          </div>
+          <div class="col m9 offset-m3">
+              <div class="section center-align">
+                  <div id="pagination"></div>
+                </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="page-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            <h5 class="white-text">Footer Content</h5>
+            <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+          </div>
+          <div class="col l4 offset-l2 s12">
+            <h5 class="white-text">Links</h5>
+            <ul>
+              <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+              <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+              <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+              <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">
+        © 2014 Copyright Text
+        <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+        </div>
+      </div>
+    </footer>
+
+  </body>
+</html>

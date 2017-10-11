@@ -1,0 +1,26 @@
+# Site settings
+# Meta tags
+title: Algolia Materialize Jekyll
+description: Boilerplate for a simple Jekyll site that uses Materialize for design and Algolia for search
+
+# Jekyll settings
+baseurl: # Leave this blank unless your site is located on a subpath, e.g. /blog
+url: # Typically http://www.yourdomain.org
+sass:
+  sass_dir: assets/css/_sass
+
+plugins:
+# - jekyll-sitemap
+
+# Google Analytics
+google-analytics: UA-12345678-9
+
+# Build settings
+markdown: kramdown
+kramdown:
+  input: GFM
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - README.md
