@@ -25,7 +25,7 @@ $(document).ready(function(){
   const templateShowMoreInactive = `{% include algolia-template-show-more-inactive.html %}`;
 
   // Define color palette
-  const widgetHeaderClasses = ['card-header', 'grey', 'darken-4', 'white-text', 'z-depth-1'];
+  const widgetHeaderClasses = ['card-header', 'blue-grey', 'lighten-4', 'z-depth-1'];
 
 
   // Construct widgets
@@ -55,16 +55,16 @@ $(document).ready(function(){
       container: '#hits',
       templates: {
         empty: 'No results',
-        item: templateHits
+        allItems: templateHits,
       },
-      transformData: function(hit) {
+      transformData: function(arr) {
         // Format numbers and currency
-        for (var i = 1; i <= 1; ++i) {
-          let n = hit.grant_amount;
+        for (var i = 0, len = arr.hits.length; i < len; i++) {
+          let n = arr.hits[i].grant_amount;
           let formattedNumber = '$' + formatter.format(n);
-          hit.grant_amount = formattedNumber;
+          arr.hits[i].grant_amount = formattedNumber;
         }
-        return hit;
+        return arr;
       }
     })
   );

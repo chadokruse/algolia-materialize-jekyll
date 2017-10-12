@@ -1,19 +1,28 @@
 {% raw %}
-<div class="row">
-  <div class="col s12">
-    <div class="card">
-      <div class="card-content">
-        <div class="card-title">
-            {{{ _highlightResult.grantee_name.value }}}
-        </div>
-        <div class="text-muted">
-          <p><span class="hit-format-currency">{{ grant_amount }}</span> <small>({{ tax_year }})</small></p>
-          <p>{{#grantee_city}}
-              {{ grantee_city }}, {{ grantee_state }} - 
-            {{/grantee_city}}{{{ _highlightResult.grant_purpose.value }}}</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+  <table class="bordered">
+    <thead>
+      <tr>
+        <th><span>Year</span></th>
+        <th><span>Name</span></th>
+        <th><span>Location</span></th>
+        <th><span>Purpose</span></th>
+        <th class="text-nowrap text-right" data-sort="int"><span>Amount</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#hits}}
+        <tr>
+          <td>{{ tax_year }}</td>
+          <td>{{{ _highlightResult.grantee_name.value }}}</td>
+          <td class="no-wrap">
+            {{#grantee_city}}
+              {{ grantee_city }}, {{ grantee_state }}
+            {{/grantee_city}}
+          </td>
+          <td>{{{ _highlightResult.grant_purpose.value }}}</td>
+          <td>{{ grant_amount }}</td>
+        </tr>
+      {{/hits}}
+    </tbody>
+  </table>
 {% endraw %}
