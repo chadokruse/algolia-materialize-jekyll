@@ -7,7 +7,7 @@ $(document).ready(function(){
     top: $('.nav-search nav').offset().top
   });
 
-  // Algolia Instantsearch
+  // Algolia Instantsearch init
   const scrollAnchor = $('.nav-search').offset().top;
   const isMobile = window.matchMedia('only screen and (max-width: 768px)');
   const search = instantsearch({
@@ -19,6 +19,14 @@ $(document).ready(function(){
 
   // Define templates
   const templateHits = `{% include algolia-template-hits.html %}`;
+  const templateRefinementItem = `{% include algolia-template-refinement-item.html %}`;
+  const templateRefinementHeader = `{% include algolia-template-refinement-header.html %}`;
+  const templateShowMoreActive = `{% include algolia-template-show-more-active.html %}`;
+  const templateShowMoreInactive = `{% include algolia-template-show-more-inactive.html %}`;
+
+  // Define color palette
+  const widgetHeaderClasses = ['card-header', 'grey', 'darken-4', 'white-text', 'z-depth-1'];
+
 
   // Construct widgets
   search.addWidget(
@@ -38,7 +46,7 @@ $(document).ready(function(){
       container: '#stats',
       cssClasses: {
         time: 'small text-muted-max'
-      }
+      },
     })
   );
 
@@ -51,11 +59,6 @@ $(document).ready(function(){
       },
       transformData: function(hit) {
         // Format numbers and currency
-        let formatter = new Intl.NumberFormat('en-US', {
-          'style': 'decimal',
-          'minimumFractionDigits': 0,
-        });
-
         for (var i = 1; i <= 1; ++i) {
           let n = hit.grant_amount;
           let formattedNumber = '$' + formatter.format(n);
@@ -68,34 +71,99 @@ $(document).ready(function(){
 
   search.addWidget(
     instantsearch.widgets.refinementList({
-      container: '#refinement-list_tax-year',
+      container: '#refinement-list--tax_year',
       attributeName: 'tax_year',
       sortBy: ['name:desc'],
       limit: 5,
       collapsible: true,
-      showMore: true,
+      showMore: {
+        templates: {
+          active: templateShowMoreActive,
+          inactive: templateShowMoreInactive,
+        },
+      },
       templates: {
-        header: 'Tax Year',
+        header: 'Tax Year' + templateRefinementHeader,
+        item: templateRefinementItem,
       },
       cssClasses: {
-        count: 'right',
+        header: widgetHeaderClasses,
+        body: 'card-content',
       },
+      transformData: function(item) {
+        for (var i = 1; i <= 1; ++i) {
+          let n = item.count;
+          let formattedNumber = formatter.format(n);
+          item.count = formattedNumber;
+        }
+        return item;
+      }
+    })
+  )
+
+  search.addWidget(
+    instantsearch.widgets.refinementList({
+      container: '#refinement-list--grantee_state',
+      attributeName: 'grantee_state',
+      limit: 5,
+      collapsible: {
+        collapsed: true
+      },
+      showMore: {
+        templates: {
+          active: templateShowMoreActive,
+          inactive: templateShowMoreInactive,
+        },
+      },
+      templates: {
+        header: 'State' + templateRefinementHeader,
+        item: templateRefinementItem,
+      },
+      cssClasses: {
+        header: widgetHeaderClasses,
+        body: 'card-content',
+      },
+      transformData: function(item) {
+        for (var i = 1; i <= 1; ++i) {
+          let n = item.count;
+          let formattedNumber = formatter.format(n);
+          item.count = formattedNumber;
+        }
+        return item;
+      }
     })
   );
 
   search.addWidget(
     instantsearch.widgets.refinementList({
-      container: '#refinement-list_state',
-      attributeName: 'grantee_state',
+      container: '#refinement-list--grantee_city',
+      attributeName: 'grantee_city',
       limit: 5,
-      collapsible: true,
-      showMore: true,
+      collapsible: {
+        collapsed: true
+      },
+      showMore: {
+        templates: {
+          active: templateShowMoreActive,
+          inactive: templateShowMoreInactive,
+        },
+      },
       templates: {
-        header: 'State',
+        header: 'City' + templateRefinementHeader,
+        item: templateRefinementItem,
       },
       cssClasses: {
-        count: 'right',
+        header: widgetHeaderClasses,
+        body: 'card-content',
       },
+      transformData: function(item) {
+        for (var i = 1; i <= 1; ++i) {
+          let n = item.count;
+          let formattedNumber = formatter.format(n);
+          item.count = formattedNumber;
+        }
+        return item;
+      }
     })
   );
 
@@ -132,4 +200,9 @@ $(document).ready(function(){
   function readyToSearchScrollPosition() {
     $('html, body').animate({scrollTop: scrollAnchor}, '500', 'swing');
   }
+
+  const formatter = new Intl.NumberFormat('en-US', {
+    'style': 'decimal',
+    'minimumFractionDigits': 0,
+  });
 });

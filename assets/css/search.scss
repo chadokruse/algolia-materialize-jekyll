@@ -3,9 +3,12 @@
 // @import 'algolia';
 
 /* Sitewide helpers */
-$accent-color: #00c593;
+$accent-color: #ee6e73;
 $text-muted: #757575;
 $text-muted-max: #9e9e9e;
+.btn {
+  background-color: $accent-color;
+}
 .text-muted {
   color: $text-muted !important;
 }
@@ -98,6 +101,10 @@ nav.nav-center ul.ul-center li .ais-search-box {
   //top: calc(50% - 18px/2)
   top: 25px;
 }
+.ais-search-box--magnifier svg {
+  height: 18px;
+  width: 18px;
+}
 .ais-search-box--reset {
   //top: calc(50% - 12px/2);
   top: 28px;
@@ -122,51 +129,36 @@ nav.nav-center ul.ul-center li .ais-search-box {
 }
 
 /* Filters */
-.ais-refinement-list {
-  padding: 24px;
-}
-.ais-refinement-list--header {
-  font-size: 1.0rem !important;
-  color: inherit;
+.card-header {
+  padding: 15px 10px 20px 20px;
   text-transform: uppercase;
-  border-bottom: 2px solid rgb(238, 238, 238);
-  margin: 0px 0px 6px;
-  padding: 0px 0px 6px;
 }
-.ais-root__collapsed {
-  .ais-refinement-list--header {
-    border: none;
-    margin: 0;
-    padding: 0;
+.section-refinements {
+  .ais-root__collapsed span i {
+    -ms-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
   }
-}
-.ais-refinement-list--item {
-  clear: both;
-}
-.ais-refinement-list--checkbox {
-  position: inherit !important;
-  opacity: 1 !important;
-  pointer-events: inherit !important;
-}
-.ais-refinement-list--label {
-  font-size: 1rem;
-  color: inherit;
-  &:hover {
+  [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+    position: inherit !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+  [type="checkbox"]+label {
+    padding-left: 10px;
+  }
+  label {
     color: inherit;
   }
-}
-.ais-refinement-list--count {
-  background: transparent;
-  border-radius: 0px;
-  padding: 0px;
-  color: $text-muted-max;
-}
-.ais-show-more {
-  text-align: center;
-  display: block;
-  margin-top: 24px;
-  cursor: pointer;
-  color: inherit;
+  label:after, label:before {
+    display: none;
+  }
+  .ais-refinement-list--item__active label {
+    color: $accent-color;
+  }
+  .ais-show-more, .show-more {
+    margin-top: 24px;
+  }
 }
 
 /* Clear all */
