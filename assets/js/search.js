@@ -58,7 +58,6 @@ $(document).ready(function(){
         allItems: templateHits,
       },
       transformData: function(arr) {
-        // Format numbers and currency
         for (var i = 0, len = arr.hits.length; i < len; i++) {
           let n = arr.hits[i].grant_amount;
           let formattedNumber = '$' + formatter.format(n);
@@ -95,6 +94,11 @@ $(document).ready(function(){
           let n = item.count;
           let formattedNumber = formatter.format(n);
           item.count = formattedNumber;
+          if(item.label) {
+            item.cssId = 'id-' + slugify(item.label);
+          } else {
+            item.cssId = 'id-' + randomId();
+          }
         }
         return item;
       }
@@ -128,6 +132,11 @@ $(document).ready(function(){
           let n = item.count;
           let formattedNumber = formatter.format(n);
           item.count = formattedNumber;
+          if(item.label) {
+            item.cssId = 'id-' + slugify(item.label);
+          } else {
+            item.cssId = 'id-' + randomId();
+          }
         }
         return item;
       }
@@ -161,6 +170,11 @@ $(document).ready(function(){
           let n = item.count;
           let formattedNumber = formatter.format(n);
           item.count = formattedNumber;
+          if(item.label) {
+            item.cssId = 'id-' + slugify(item.label);
+          } else {
+            item.cssId = 'id-' + randomId();
+          }
         }
         return item;
       }
@@ -199,6 +213,16 @@ $(document).ready(function(){
 
   function readyToSearchScrollPosition() {
     $('html, body').animate({scrollTop: scrollAnchor}, '500', 'swing');
+  }
+
+  function slugify (text) {
+    return text.toLowerCase().replace(/-+/g, '').replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+  };
+
+  function randomId() {
+    return Math.random()
+      .toString(36)
+      .substr(2, 10);
   }
 
   const formatter = new Intl.NumberFormat('en-US', {
