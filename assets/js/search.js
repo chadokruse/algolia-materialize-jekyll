@@ -3,24 +3,29 @@
 $(document).ready(function(){
   // Initialize Materialize components
   $('.parallax').parallax();
+  $('.button-collapse').sideNav();
   $('.nav-search nav').pushpin({
     top: $('.nav-search nav').offset().top
   });
 
-  // Algolia Instantsearch init
+  // Helper definitions
   const scrollAnchor = $('.nav-search').offset().top;
-  const isMobile = window.matchMedia('only screen and (max-width: 768px)');
+  const isMobile = window.matchMedia('only screen and (max-width: 992px)');
+
+  // Algolia Instantsearch init
   const search = instantsearch({
     appId: 'QA1231C5W9',
     apiKey: 'b4035f7c5949a27a229bbda51aeb8329',
     indexName: 'grantmakers_io',
-    urlSync: true
+    urlSync: true,
   });
 
   // Define templates
   const templateHits = `{% include algolia-template-hits.html %}`;
+  const templateHitsEmpty = `{% include algolia-template-hits-empty.html %}`;
   const templateRefinementItem = `{% include algolia-template-refinement-item.html %}`;
   const templateRefinementHeader = `{% include algolia-template-refinement-header.html %}`;
+  const templateCurrentRefinedValues = `{% include algolia-template-current-refined-values.html %}`;
   const templateShowMoreActive = `{% include algolia-template-show-more-active.html %}`;
   const templateShowMoreInactive = `{% include algolia-template-show-more-inactive.html %}`;
 
@@ -44,17 +49,19 @@ $(document).ready(function(){
   search.addWidget(
     instantsearch.widgets.stats({
       container: '#stats',
+      autoHideContainer: false,
       cssClasses: {
         time: 'small text-muted-max'
       },
     })
   );
 
+  // TODO Use infiniteHits template if isMobile.matches (aka on mobile devices)
   search.addWidget(
     instantsearch.widgets.hits({
       container: '#hits',
       templates: {
-        empty: 'No results',
+        empty: templateHitsEmpty,
         allItems: templateHits,
       },
       transformData: function(arr) {
@@ -74,7 +81,9 @@ $(document).ready(function(){
       attributeName: 'tax_year',
       sortBy: ['name:desc'],
       limit: 5,
-      collapsible: true,
+      collapsible: {
+        collapsed: true
+      },
       showMore: {
         templates: {
           active: templateShowMoreActive,
@@ -90,17 +99,7 @@ $(document).ready(function(){
         body: 'card-content',
       },
       transformData: function(item) {
-        for (var i = 1; i <= 1; ++i) {
-          let n = item.count;
-          let formattedNumber = formatter.format(n);
-          item.count = formattedNumber;
-          if(item.label) {
-            item.cssId = 'id-' + slugify(item.label);
-          } else {
-            item.cssId = 'id-' + randomId();
-          }
-        }
-        return item;
+        return formatRefinements(item);
       }
     })
   )
@@ -128,17 +127,7 @@ $(document).ready(function(){
         body: 'card-content',
       },
       transformData: function(item) {
-        for (var i = 1; i <= 1; ++i) {
-          let n = item.count;
-          let formattedNumber = formatter.format(n);
-          item.count = formattedNumber;
-          if(item.label) {
-            item.cssId = 'id-' + slugify(item.label);
-          } else {
-            item.cssId = 'id-' + randomId();
-          }
-        }
-        return item;
+        return formatRefinements(item);
       }
     })
   );
@@ -166,18 +155,29 @@ $(document).ready(function(){
         body: 'card-content',
       },
       transformData: function(item) {
-        for (var i = 1; i <= 1; ++i) {
-          let n = item.count;
-          let formattedNumber = formatter.format(n);
-          item.count = formattedNumber;
-          if(item.label) {
-            item.cssId = 'id-' + slugify(item.label);
-          } else {
-            item.cssId = 'id-' + randomId();
-          }
-        }
-        return item;
+        return formatRefinements(item);
       }
+    })
+  );
+
+  search.addWidget(
+    instantsearch.widgets.currentRefinedValues({
+      container: '#current-refined-values',
+      clearAll: false,
+      clearsQuery: true,
+      onlyListedAttributes: true,
+      attributes: [
+        {name: 'tax_year', label: 'Tax Year'},
+        {name: 'grantee_state', label: 'State'},
+        {name: 'grantee_city', label: 'City'},
+      ],
+      cssClasses: {
+        link: ['waves-effect', 'btn', 'btn-custom', 'btn-clear-refinements', 'blue-grey', 'lighten-4'],
+        clearAll: ['waves-effect', 'btn', 'btn-custom', 'btn-clear-refinements']
+      },
+      templates: {
+        item: templateCurrentRefinedValues,
+      },
     })
   );
 
@@ -188,13 +188,14 @@ $(document).ready(function(){
         link: 'Clear all'
       },
       autoHideContainer: false,
+      clearsQuery: true,
       cssClasses: {
-        root: 'btn',
-        link: 'white-text'
+        root: ['btn', 'btn-custom', 'waves-effect','waves-light', 'white-text'],
       }
     })
   );
 
+  // TODO remove pagination on mobile when infiniteHits widgets is used
   search.addWidget(
     instantsearch.widgets.pagination({
       container: '#pagination',
@@ -211,10 +212,12 @@ $(document).ready(function(){
   
   search.start();
 
+  // Scroll to top upon input change
   function readyToSearchScrollPosition() {
     $('html, body').animate({scrollTop: scrollAnchor}, '500', 'swing');
   }
 
+  // Helper functions
   function slugify (text) {
     return text.toLowerCase().replace(/-+/g, '').replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
   };
@@ -229,4 +232,19 @@ $(document).ready(function(){
     'style': 'decimal',
     'minimumFractionDigits': 0,
   });
+
+  function formatRefinements(item) {
+    // Format numbers
+    let n = item.count;
+    let formattedNumber = formatter.format(n);
+    item.count = formattedNumber;
+    // Ensure css IDs are properly formatted and unique
+    if(item.label) {
+      item.cssId = 'id-' + slugify(item.label);
+    } else {
+      // Fallback
+      item.cssId = 'id-' + randomId();
+    }
+  return item;
+}
 });
