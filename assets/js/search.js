@@ -30,7 +30,7 @@ $(document).ready(function(){
   const templateShowMoreInactive = `{% include algolia-template-show-more-inactive.html %}`;
 
   // Define color palette
-  const widgetHeaderClasses = ['card-header', 'blue-grey', 'lighten-4', 'z-depth-1'];
+  const widgetHeaderClasses = ['card-header', 'grey', 'lighten-4', 'z-depth-1'];
 
 
   // Construct widgets
