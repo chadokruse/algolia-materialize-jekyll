@@ -144,6 +144,9 @@ nav.nav-center ul.ul-center li .ais-search-box {
 .section-raised {
   margin: 0px 30px 0px;
   border-radius: 6px;
+  @media screen and (min-width: 993px) {
+    min-height: 470px;
+  }
 }
 
 /* Stats */
