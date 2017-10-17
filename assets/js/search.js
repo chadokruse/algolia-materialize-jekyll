@@ -16,7 +16,7 @@ $(document).ready(function(){
   const search = instantsearch({
     appId: '5YBTC21R7O',
     apiKey: 'c6b664e1e04dba1600bd9fe9c1b5bcc0',
-    indexName: 'packard',
+    indexName: 'demo',
     urlSync: true,
   });
 
