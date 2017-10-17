@@ -164,6 +164,11 @@ nav.nav-center ul.ul-center li .ais-search-box {
     label {
       font-size: 1rem;
       cursor: pointer;
+      // TODO Eliminate truncate hack
+      width: 78%;
+      display: inline-block;
+      text-overflow: ellipsis;
+      overflow: hidden;
     }
     label:after, label:before {
       display: none;
