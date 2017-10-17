@@ -36,7 +36,7 @@ $(document).ready(function(){
   // Construct widgets
   search.addWidget(
     instantsearch.widgets.searchBox({
-      container: '#search-box',
+      container: '#ais-widget-search-box',
       poweredBy: true,
       reset: true,
       queryHook: function(query, search) {
@@ -48,7 +48,7 @@ $(document).ready(function(){
 
   search.addWidget(
     instantsearch.widgets.stats({
-      container: '#stats',
+      container: '#ais-widget-stats',
       autoHideContainer: false,
       cssClasses: {
         time: 'small text-muted-max'
@@ -59,7 +59,7 @@ $(document).ready(function(){
   // TODO Use infiniteHits template if isMobile.matches (aka on mobile devices)
   search.addWidget(
     instantsearch.widgets.hits({
-      container: '#hits',
+      container: '#ais-widget-hits',
       templates: {
         empty: templateHitsEmpty,
         allItems: templateHits,
@@ -77,7 +77,7 @@ $(document).ready(function(){
 
   search.addWidget(
     instantsearch.widgets.refinementList({
-      container: '#refinement-list--tax_year',
+      container: '#ais-widget-refinement-list--tax_year',
       attributeName: 'tax_year',
       sortBy: ['name:desc'],
       limit: 5,
@@ -106,7 +106,7 @@ $(document).ready(function(){
 
   search.addWidget(
     instantsearch.widgets.refinementList({
-      container: '#refinement-list--grantee_state',
+      container: '#ais-widget-refinement-list--grantee_state',
       attributeName: 'grantee_state',
       limit: 5,
       collapsible: {
@@ -134,7 +134,35 @@ $(document).ready(function(){
 
   search.addWidget(
     instantsearch.widgets.refinementList({
-      container: '#refinement-list--grantee_city',
+      container: '#ais-widget-refinement-list--purpose',
+      attributeName: 'grant_purpose',
+      limit: 5,
+      collapsible: {
+        collapsed: true
+      },
+      showMore: {
+        templates: {
+          active: templateShowMoreActive,
+          inactive: templateShowMoreInactive,
+        },
+      },
+      templates: {
+        header: 'Program' + templateRefinementHeader,
+        item: templateRefinementItem,
+      },
+      cssClasses: {
+        header: widgetHeaderClasses,
+        body: 'card-content',
+      },
+      transformData: function(item) {
+        return formatRefinements(item);
+      }
+    })
+  );
+
+  search.addWidget(
+    instantsearch.widgets.refinementList({
+      container: '#ais-widget-refinement-list--grantee_city',
       attributeName: 'grantee_city',
       limit: 5,
       collapsible: {
@@ -162,7 +190,7 @@ $(document).ready(function(){
 
   search.addWidget(
     instantsearch.widgets.currentRefinedValues({
-      container: '#current-refined-values',
+      container: '#ais-widget-current-refined-values',
       clearAll: false,
       clearsQuery: true,
       onlyListedAttributes: true,
@@ -183,7 +211,7 @@ $(document).ready(function(){
 
   search.addWidget(
     instantsearch.widgets.clearAll({
-      container: '#clear-all',
+      container: '#ais-widget-clear-all',
       templates: {
         link: 'Clear all'
       },
@@ -198,7 +226,7 @@ $(document).ready(function(){
   // TODO remove pagination on mobile when infiniteHits widgets is used
   search.addWidget(
     instantsearch.widgets.pagination({
-      container: '#pagination',
+      container: '#ais-widget-pagination',
       maxPages: 20,
       scrollTo: '.nav-search',
       cssClasses: {

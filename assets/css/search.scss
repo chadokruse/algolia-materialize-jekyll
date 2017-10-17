@@ -91,7 +91,7 @@ nav.nav-center ul.ul-center li .ais-search-box {
   width: 100%;
   z-index: 2;
 }
-#search-box input {
+#ais-widget-search-box input {
   width: 360px; // 400 minus padding-left
   padding-left: 40px;
   background-color: white;
@@ -230,7 +230,7 @@ nav.nav-center ul.ul-center li .ais-search-box {
 table tbody {
   font-weight: 300;
 }
-#hits em {
+#ais-widget-hits em {
   font-style: normal;
   background-color: lighten($accent-color, 27%);
 }
