@@ -14,9 +14,9 @@ $(document).ready(function(){
 
   // Algolia Instantsearch init
   const search = instantsearch({
-    appId: 'QA1231C5W9',
-    apiKey: 'b4035f7c5949a27a229bbda51aeb8329',
-    indexName: 'grantmakers_io',
+    appId: '5YBTC21R7O',
+    apiKey: 'c6b664e1e04dba1600bd9fe9c1b5bcc0',
+    indexName: 'packard',
     urlSync: true,
   });
 
