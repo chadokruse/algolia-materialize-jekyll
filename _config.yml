@@ -22,5 +22,6 @@ kramdown:
 exclude:
   - Gemfile
   - Gemfile.lock
-  - LICENSE
+  - LICENSE.md
   - README.md
+  - test-data-for-algolia-upload.json
