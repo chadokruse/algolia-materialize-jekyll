@@ -5,9 +5,7 @@ A Jekyll template for quickly getting up and running with [Algolia](https://www.
 Leverages Algolia's Instantsearch library ([docs](https://community.algolia.com/instantsearch.js/)), which makes it drop dead simple to create good search UX.
 
 ### Data
-An example dataset is provided for convenience. Please use this dataset for your own prototypes.
-
-Change your Algolia credentials in [`search.js`](https://github.com/chadokruse/algolia-materialize-jekyll/blob/64371c9300c180de9a416423286b9bd071e05dad/assets/js/search.js#L15).
+An example dataset is provided for convenience. Please upload the dataset to your own Algolia project and update the Algolia credentials in [`search.js`](https://github.com/chadokruse/algolia-materialize-jekyll/blob/64371c9300c180de9a416423286b9bd071e05dad/assets/js/search.js#L15).
 
 ### Limitations
 I use the template primarily for prototyping purposes, thus robust browser support is not a concern. Due to the use of [template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals), [IE 11 support](https://caniuse.com/#feat=template-literals) will require minor modification to [`search.js`](https://github.com/chadokruse/algolia-materialize-jekyll/blob/64371c9300c180de9a416423286b9bd071e05dad/assets/js/search.js#L24).
