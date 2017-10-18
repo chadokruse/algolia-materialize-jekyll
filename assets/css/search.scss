@@ -185,6 +185,9 @@ nav.nav-center ul.ul-center li .ais-search-box {
 .card-header {
   padding: 15px 10px 20px 20px;
   border-radius: 2px 2px 0px 0px;
+  @media screen and (max-width: 992px) {
+    line-height: 1.4rem;
+  }
 }
 .section-refinements {
   .temp-fix-materialize-bug {

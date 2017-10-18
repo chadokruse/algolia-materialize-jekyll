@@ -277,6 +277,35 @@ $(document).ready(function(){
     })
   );
 
+  /* Recreate refinement widgets for slide-out on mobile */
+  search.addWidget(
+    instantsearch.widgets.refinementList({
+      container: '#ais-widget-mobile-refinement-list--purpose',
+      attributeName: 'grant_purpose',
+      limit: 5,
+      collapsible: {
+        collapsed: true
+      },
+      showMore: {
+        templates: {
+          active: templateShowMoreActive,
+          inactive: templateShowMoreInactive,
+        },
+      },
+      templates: {
+        header: 'Program' + templateRefinementHeader,
+        item: templateRefinementItem,
+      },
+      cssClasses: {
+        header: widgetHeaderClasses,
+        body: 'card-content',
+      },
+      transformData: function(item) {
+        return formatRefinements(item);
+      }
+    })
+  );
+
   search.start();
 
   // Scroll to top upon input change
