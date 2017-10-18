@@ -205,6 +205,29 @@ $(document).ready(function(){
   );
 
   search.addWidget(
+    instantsearch.widgets.rangeSlider({
+      container: '#ais-widget-range-slider',
+      attributeName: 'grant_amount',
+      collapsible: {
+        collapsed: true
+      },
+      cssClasses: {
+        header: widgetHeaderClasses,
+        body: 'card-content',
+      },
+      templates: {
+        header: 'Amount' + templateRefinementHeader
+      },
+      tooltips: {
+        format: function(rawValue) {
+          return '$' + Math.round(rawValue).toLocaleString();
+        }
+      },
+      pips: false,
+    })
+  );
+
+  search.addWidget(
     instantsearch.widgets.currentRefinedValues({
       container: '#ais-widget-current-refined-values',
       clearAll: false,

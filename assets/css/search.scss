@@ -235,6 +235,13 @@ nav.nav-center ul.ul-center li .ais-search-box {
   .ais-show-more, .show-more {
     margin-top: 24px;
   }
+  /* Range slider */
+  .ais-range-slider--handle {
+    border-color: $text-muted;
+  }
+  .ais-range-slider .rheostat-horizontal .rheostat-progress {
+    background-color: #fafafa;
+  }
 }
 
 /* Clear all */
