@@ -234,6 +234,7 @@ $(document).ready(function(){
       clearsQuery: true,
       onlyListedAttributes: true,
       attributes: [
+        {name: 'grant_purpose', label: 'Program'},
         {name: 'tax_year', label: 'Tax Year'},
         {name: 'grantee_state', label: 'State'},
         {name: 'grantee_city', label: 'City'},
