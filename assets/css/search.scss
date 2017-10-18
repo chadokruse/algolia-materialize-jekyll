@@ -152,6 +152,35 @@ nav.nav-center ul.ul-center li .ais-search-box {
   color: $text-muted;
 }
 
+/* Sort By */
+#ais-widget-sort-by {
+  .input-field {
+    margin-top: 0px !important;
+  }
+  select {
+    display: inline-block; // Necessary without select plugin
+  }
+  select, input, .caret { // Can remove 'select' if select plugin initiated
+    color: $text-muted !important; 
+  }
+  select, input {
+    margin-bottom: 0 !important;
+    border-bottom: 0 !important;
+    line-height: 1.5rem !important;
+    height: 1.5rem !important;
+    // If using Materialize plugin, can remove all below
+    background-color: transparent !important; // Necessary without select plugin
+    border: none !important; // Necessary without select plugin
+    outline: none !important; // Necessary without select plugin
+    line-height: 1.4rem !important;
+    height: 1.4rem !important;
+
+  }
+}
+.divider {
+  clear: both;
+}
+
 /* Filters - Refinements */
 .card-header {
   padding: 15px 10px 20px 20px;

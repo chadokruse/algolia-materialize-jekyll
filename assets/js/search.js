@@ -2,6 +2,9 @@
 ---
 $(document).ready(function(){
   // Initialize Materialize components
+  // Note: if the element is create dynamically via Instantsearch widget,
+  // the plugin needs to be initialized in the normal Instantsearch workflow
+  // See https://github.com/chadokruse/algolia-materialize-jekyll/issues/8
   $('.parallax').parallax();
   $('.button-collapse').sideNav();
   $('.nav-search nav').pushpin({
@@ -53,6 +56,19 @@ $(document).ready(function(){
       cssClasses: {
         time: 'small text-muted-max'
       },
+    })
+  );
+
+  search.addWidget(
+    instantsearch.widgets.sortBySelector({
+      container: '#ais-widget-sort-by',
+      cssClasses: {
+        root: 'input-field'
+      },
+      indices: [
+        {name: 'demo', label: 'Most relevant'},
+        {name: 'demo_amount_desc', label: 'Grant size'},
+      ]
     })
   );
 
@@ -237,7 +253,7 @@ $(document).ready(function(){
       }
     })
   );
-  
+
   search.start();
 
   // Scroll to top upon input change
