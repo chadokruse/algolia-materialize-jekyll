@@ -11,7 +11,7 @@ An example dataset is provided for convenience. Please upload the dataset to you
 I use the template primarily for prototyping purposes, thus robust browser support is not a concern. Due to the use of [template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals), [IE 11 support](https://caniuse.com/#feat=template-literals) will require minor modification to [`search.js`](https://github.com/chadokruse/algolia-materialize-jekyll/blob/64371c9300c180de9a416423286b9bd071e05dad/assets/js/search.js#L24).
 
 ### Bugs & Roadmap
-There are a few known bugs and a relatively short wish list (primarily mobile related), all of which are listed in [Issues](https://github.com/chadokruse/algolia-materialize-jekyll/issues).
+There are a few known bugs and a relatively short wish list (primarily mobile related), all of which are listed in [this Waffle board](https://waffle.io/chadokruse/algolia-materialize-jekyll).
 
 Materialize is planning a fairly big rewrite of many core components in their upcoming v1.0 release, so be prepared for breaking changes in the very near future. 
 
