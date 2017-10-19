@@ -278,11 +278,24 @@ $(document).ready(function(){
     })
   );
 
-  /* Recreate refinement widgets for slide-out on mobile */
+  /* Recreate refinement widgets for mobile views */
+  /* Clear all button */
+  search.addWidget(
+    instantsearch.widgets.clearAll({
+      container: '#ais-widget-mobile-clear-all',
+      templates: {
+        link: '<a class="waves-effect waves-light btn btn grey lighten-5 grey-text text-darken-3">Clear</a>'
+      },
+      autoHideContainer: false,
+      clearsQuery: true,
+    })
+  );
+  /* Slide out */
   search.addWidget(
     instantsearch.widgets.refinementList({
       container: '#ais-widget-mobile-refinement-list--purpose',
       attributeName: 'grant_purpose',
+      autoHideContainer: false,
       limit: 5,
       collapsible: {
         collapsed: true
