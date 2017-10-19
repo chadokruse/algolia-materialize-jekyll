@@ -93,6 +93,34 @@ $(document).ready(function(){
 
   search.addWidget(
     instantsearch.widgets.refinementList({
+      container: '#ais-widget-refinement-list--purpose',
+      attributeName: 'grant_purpose',
+      limit: 5,
+      collapsible: {
+        collapsed: true
+      },
+      showMore: {
+        templates: {
+          active: templateShowMoreActive,
+          inactive: templateShowMoreInactive,
+        },
+      },
+      templates: {
+        header: 'Program' + templateRefinementHeader,
+        item: templateRefinementItem,
+      },
+      cssClasses: {
+        header: widgetHeaderClasses,
+        body: 'card-content',
+      },
+      transformData: function(item) {
+        return formatRefinements(item);
+      }
+    })
+  );
+
+  search.addWidget(
+    instantsearch.widgets.refinementList({
       container: '#ais-widget-refinement-list--tax_year',
       attributeName: 'tax_year',
       sortBy: ['name:desc'],
@@ -136,34 +164,6 @@ $(document).ready(function(){
       },
       templates: {
         header: 'State' + templateRefinementHeader,
-        item: templateRefinementItem,
-      },
-      cssClasses: {
-        header: widgetHeaderClasses,
-        body: 'card-content',
-      },
-      transformData: function(item) {
-        return formatRefinements(item);
-      }
-    })
-  );
-
-  search.addWidget(
-    instantsearch.widgets.refinementList({
-      container: '#ais-widget-refinement-list--purpose',
-      attributeName: 'grant_purpose',
-      limit: 5,
-      collapsible: {
-        collapsed: true
-      },
-      showMore: {
-        templates: {
-          active: templateShowMoreActive,
-          inactive: templateShowMoreInactive,
-        },
-      },
-      templates: {
-        header: 'Program' + templateRefinementHeader,
         item: templateRefinementItem,
       },
       cssClasses: {
@@ -295,6 +295,91 @@ $(document).ready(function(){
       },
       templates: {
         header: 'Program' + templateRefinementHeader,
+        item: templateRefinementItem,
+      },
+      cssClasses: {
+        header: widgetHeaderClasses,
+        body: 'card-content',
+      },
+      transformData: function(item) {
+        return formatRefinements(item);
+      }
+    })
+  );
+
+  search.addWidget(
+    instantsearch.widgets.refinementList({
+      container: '#ais-widget-mobile-refinement-list--tax_year',
+      attributeName: 'tax_year',
+      sortBy: ['name:desc'],
+      limit: 5,
+      collapsible: {
+        collapsed: true
+      },
+      showMore: {
+        templates: {
+          active: templateShowMoreActive,
+          inactive: templateShowMoreInactive,
+        },
+      },
+      templates: {
+        header: 'Tax Year' + templateRefinementHeader,
+        item: templateRefinementItem,
+      },
+      cssClasses: {
+        header: widgetHeaderClasses,
+        body: 'card-content',
+      },
+      transformData: function(item) {
+        return formatRefinements(item);
+      }
+    })
+  )
+
+  search.addWidget(
+    instantsearch.widgets.refinementList({
+      container: '#ais-widget-mobile-refinement-list--grantee_state',
+      attributeName: 'grantee_state',
+      limit: 5,
+      collapsible: {
+        collapsed: true
+      },
+      showMore: {
+        templates: {
+          active: templateShowMoreActive,
+          inactive: templateShowMoreInactive,
+        },
+      },
+      templates: {
+        header: 'State' + templateRefinementHeader,
+        item: templateRefinementItem,
+      },
+      cssClasses: {
+        header: widgetHeaderClasses,
+        body: 'card-content',
+      },
+      transformData: function(item) {
+        return formatRefinements(item);
+      }
+    })
+  );
+
+  search.addWidget(
+    instantsearch.widgets.refinementList({
+      container: '#ais-widget-mobile-refinement-list--grantee_city',
+      attributeName: 'grantee_city',
+      limit: 5,
+      collapsible: {
+        collapsed: true
+      },
+      showMore: {
+        templates: {
+          active: templateShowMoreActive,
+          inactive: templateShowMoreInactive,
+        },
+      },
+      templates: {
+        header: 'City' + templateRefinementHeader,
         item: templateRefinementItem,
       },
       cssClasses: {
