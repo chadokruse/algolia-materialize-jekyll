@@ -1,7 +1,9 @@
 ---
 ---
 /* Override Materialize defaults */
-body {
+input[type=text],
+input[type=text]:not(.browser-default),
+select:focus {
   font-size: 16px;
 }
 
