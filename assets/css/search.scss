@@ -248,6 +248,10 @@ nav.nav-center ul.ul-center li .ais-search-box {
   .ais-show-more, .show-more {
     margin-top: 24px;
   }
+  .ais-refinement-list--list:empty::after {
+    content: 'No results'; 
+  }
+
   /* Range slider */
   .ais-range-slider--handle {
     border-color: $text-muted;

@@ -324,6 +324,7 @@ $(document).ready(function(){
     instantsearch.widgets.refinementList({
       container: '#ais-widget-mobile-refinement-list--tax_year',
       attributeName: 'tax_year',
+      autoHideContainer: false,
       sortBy: ['name:desc'],
       limit: 5,
       collapsible: {
@@ -353,6 +354,7 @@ $(document).ready(function(){
     instantsearch.widgets.refinementList({
       container: '#ais-widget-mobile-refinement-list--grantee_state',
       attributeName: 'grantee_state',
+      autoHideContainer: false,
       limit: 5,
       collapsible: {
         collapsed: true
@@ -381,6 +383,7 @@ $(document).ready(function(){
     instantsearch.widgets.refinementList({
       container: '#ais-widget-mobile-refinement-list--grantee_city',
       attributeName: 'grantee_city',
+      autoHideContainer: false,
       limit: 5,
       collapsible: {
         collapsed: true
