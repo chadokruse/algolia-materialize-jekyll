@@ -85,9 +85,6 @@ nav.nav-center ul.ul-center li .ais-search-box {
 /* Searchbar */
 .nav-search {
   height: 64px;
-  @media screen and (max-width: 992px) {
-    // height: 128px;
-  }
 }
 .nav-search nav {
   margin-bottom: 10px;
@@ -98,16 +95,13 @@ nav.nav-center ul.ul-center li .ais-search-box {
   z-index: 3;
 }
 #ais-widget-search-box input {
-  width: 360px; // 400 minus padding-left
+  width: calc(100% - 40px);
   padding-left: 40px;
   background-color: white;
   border: none;
   box-shadow: none;
   margin-bottom: 0;
   border-radius: 3px;
-}
-.ais-search-box {
-  max-width: 400px;
 }
 .ais-search-box--magnifier, .ais.ais-search-box--reset {
   fill: #bfc7d8;
