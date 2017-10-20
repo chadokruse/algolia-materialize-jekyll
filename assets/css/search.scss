@@ -94,6 +94,11 @@ nav.nav-center ul.ul-center li .ais-search-box {
   width: 100%;
   z-index: 3;
 }
+@media screen and (min-width: 993px) {
+  .ais-search-box {
+    max-width: 400px;
+  }
+}
 #ais-widget-search-box input {
   width: calc(100% - 40px);
   padding-left: 40px;
