@@ -95,6 +95,7 @@ nav.nav-center ul.ul-center li .ais-search-box {
 }
 .nav-search nav.pinned {
   width: 100%;
+  z-index: 3;
 }
 #ais-widget-search-box input {
   width: 360px; // 400 minus padding-left
