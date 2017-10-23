@@ -11,7 +11,8 @@ select:focus {
 $accent-color: #ee6e73;
 $text-muted: #757575;
 $text-muted-max: #9e9e9e;
-.btn {
+$text-color: rgba(0,0,0,0.87);
+.btn, .accent {
   background-color: $accent-color;
 }
 .text-muted {
@@ -41,6 +42,31 @@ body {
 
 main {
   flex: 1 0 auto;
+}
+/* Inline lists */
+.list-inline {
+  padding-left: 0;
+  margin-left: -5px;
+  list-style: none;
+}
+.list-inline > li {
+  display: inline-block;
+  padding-right: 5px;
+  padding-left: 5px;
+}
+/* Clear browser defaults */
+.clear-browser-default-button button {
+  align-items: inherit;
+  text-align: inherit;
+  cursor: inherit;
+  color: inherit;
+  background-color: inherit;
+  box-sizing: inherit;
+  padding: inherit;
+  border-width: inherit;
+  border-style: inherit;
+  border-color: inherit;
+  border-image: inherit;
 }
 
 /* Navbar */
@@ -297,6 +323,35 @@ table tbody {
 }
 .btn-clear-refinements {
   margin: 5px 5px;
+}
+
+/* Infinite Hits */
+.infinite-hits-wrapper {
+  .card-title {
+    font-size: 1rem;
+    line-height: 1rem;
+    font-weight: 600;
+  }
+  .ais-infinite-hits-wrapper {
+    .row > div {
+      padding-top: 2px;
+      padding-bottom: 2px;
+    }
+  }
+  .ais-infinite-hits {
+    span.badge.new::after {
+      display: none;
+    }
+    @media screen and (max-width: 992px) {
+      .right-align {
+        text-align: left;
+      }
+    }
+  }
+  .infinite-hits-show-more-wrapper {
+    display: block;
+    margin-top: 48px;
+  }
 }
 
 /* Pagination */

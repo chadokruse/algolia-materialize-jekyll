@@ -20,6 +20,7 @@ $(document).ready(function(){
     appId: '5YBTC21R7O',
     apiKey: 'c6b664e1e04dba1600bd9fe9c1b5bcc0',
     indexName: 'demo',
+    numberLocale: 'en-US',
     urlSync: true,
   });
 
@@ -430,6 +431,14 @@ $(document).ready(function(){
     'style': 'decimal',
     'minimumFractionDigits': 0,
   });
+
+  function formatNumbersOnly(item) {
+    // Format numbers
+    let n = item.grant_amount;
+    let formattedNumber = formatter.format(n);
+    item.grant_amount = formattedNumber;
+    return item;
+  }
 
   function formatRefinements(item) {
     // Format numbers
