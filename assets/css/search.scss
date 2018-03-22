@@ -199,6 +199,9 @@ nav.nav-center ul.ul-center li .ais-search-box {
   input, .caret {
     color: $text-muted !important; 
   }
+  .select-wrapper .caret {
+    fill: $text-muted !important;
+  }
   select, input {
     margin-bottom: 0 !important;
     border-bottom: 0 !important;
