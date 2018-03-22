@@ -1,5 +1,9 @@
 ---
 ---
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
 /* Override Materialize defaults */
 input[type=text],
 input[type=text]:not(.browser-default),
@@ -190,13 +194,9 @@ nav.nav-center ul.ul-center li .ais-search-box {
 #ais-widget-sort-by {
   .input-field {
     margin-top: 0px !important;
+    margin-bottom: 0px !important;
   }
-  select {
-    // Necessary without select plugin
-    display: inline-block;
-    padding: 0;
-  }
-  select, input, .caret { // Can remove 'select' if select plugin initiated
+  input, .caret {
     color: $text-muted !important; 
   }
   select, input {
@@ -204,13 +204,11 @@ nav.nav-center ul.ul-center li .ais-search-box {
     border-bottom: 0 !important;
     line-height: 1.5rem !important;
     height: 1.5rem !important;
-    // If using Materialize plugin, can remove all below
-    background-color: transparent !important; // Necessary without select plugin
-    border: none !important; // Necessary without select plugin
-    outline: none !important; // Necessary without select plugin
-    line-height: 1.4rem !important;
-    height: 1.4rem !important;
-
+    font-size: 15px;
+    font-family: 'Roboto';
+  }
+  .dropdown-content li>a, .dropdown-content li>span {
+    color: $accent-color;
   }
 }
 .divider {
@@ -226,29 +224,20 @@ nav.nav-center ul.ul-center li .ais-search-box {
   }
 }
 .section-refinements {
-  .temp-fix-materialize-bug {
+  [type="checkbox"].filled-in:checked+span:not(.lever):after {
+    border: 2px solid $accent-color;
+    background-color: $accent-color;
+  }
+  label {
+    // TODO Eliminate truncate hack
+    width: 78%;
+    display: inline-block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  span.refinement-count {
     line-height: 25px;
-    margin-bottom: 8px;
-    cursor: pointer;
-    label {
-      font-size: 1rem;
-      cursor: pointer;
-      // TODO Eliminate truncate hack
-      width: 78%;
-      display: inline-block;
-      text-overflow: ellipsis;
-      overflow: hidden;
-    }
-    label:after, label:before {
-      display: none;
-    }
-    [type="checkbox"] {
-      margin-right: 8px;
-      position: inherit !important;
-      opacity: 1 !important;
-      pointer-events: auto !important;
-      cursor: pointer;
-    }
+    height: 25px;
   }
   .ais-root__collapsed {
     .ais-header {

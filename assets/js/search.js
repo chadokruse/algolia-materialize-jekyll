@@ -2,11 +2,11 @@
 ---
 $(document).ready(function(){
   // Initialize Materialize components
-  // Note: if the element is create dynamically via Instantsearch widget,
+  // Note: if the element is created dynamically via Instantsearch widget,
   // the plugin needs to be initialized in the normal Instantsearch workflow
-  // See https://github.com/chadokruse/algolia-materialize-jekyll/issues/8
+  // using the render method (e.g. search.once('render'...)
   $('.parallax').parallax();
-  $('.button-collapse').sideNav();
+  $('.button-collapse').sidenav();
   $('.nav-search nav').pushpin({
     top: $('.nav-search nav').offset().top
   });
@@ -409,6 +409,12 @@ $(document).ready(function(){
     })
   );
 
+  // Initialize Materialize JS components
+  search.once('render', function(){
+    $('select').formSelect();
+  });
+
+  // Initialize search
   search.start();
 
   // Scroll to top upon input change
