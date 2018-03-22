@@ -1,15 +1,9 @@
 {% raw %}
-  <div class="temp-fix-materialize-bug truncate">
-      <label for="{{cssId}}" title="{{label}}">
-        <input type="checkbox" class="filled-in" id="{{cssId}}" {{#isRefined}}checked="checked"{{/isRefined}} />
-        {{value}}
-      </label>
-      <span class="right small text-muted-max">{{count}}</span>
+  <div>
+    <label for="{{cssId}}" title="{{label}}">
+      <input type="checkbox" class="filled-in" id="{{cssId}}" {{#isRefined}}checked="checked"{{/isRefined}} />
+      <span>{{value}}</span>
+    </label>
+    <span class="refinement-count right small text-muted-max">{{count}}</span>
   </div>
 {% endraw %}
-{% comment %}
-  Note, the code above uses a non-standard method to get around a known Materialize bug.
-  Reproducible Codepen: https://codepen.io/anon/pen/GMBzjX
-  Github Issue: https://github.com/Dogfalo/materialize/issues/5062
-  May require refactor as APIs likely to change in v1.0 release of Materialize
-{% endcomment %}

@@ -18,18 +18,19 @@
     <meta name="description" content="Boilerplate for a simple Jekyll site that uses Materialize for design and Algolia for search">
 
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.2.1/dist/instantsearch.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.4/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
     <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/search.css">    
 
     <!-- JavaScript -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.2.1/dist/instantsearch.min.js"></script>
-    <script type="text/javascript" src="{{ site.baseurl }}/assets/js/search.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.4/js/materialize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0"></script>
+    <script src="{{ site.baseurl }}/assets/js/search.js"></script>
   </head>
   <body>
 
@@ -96,8 +97,7 @@
             </div>
             <div class="divider hide-on-med-and-down"></div>
             <div class="section section-refinements hide-on-med-and-down">
-              <!-- Filters / Refinements -->
-              <div class="row">
+              <div> <!-- Add row class to remove added white space / padding -->
                 <div class="col s12">
                   <div class="card">
                     <div id="ais-widget-refinement-list--purpose"></div>
@@ -132,7 +132,7 @@
             </div>
             <div class="divider"></div>
             <div class="section">
-              <div class="row">
+              <div> <!-- Add row class to remove added white space / padding -->
                 <div class="col s12">
                     <div id="ais-widget-current-refined-values"></div>
                   <div class="card">
