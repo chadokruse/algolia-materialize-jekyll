@@ -6,7 +6,7 @@ $(document).ready(function(){
   // the plugin needs to be initialized in the normal Instantsearch workflow
   // using the render method (e.g. search.once('render'...)
   $('.parallax').parallax();
-  $('.button-collapse').sidenav();
+  $('.sidenav').sidenav();
   $('.nav-search nav').pushpin({
     top: $('.nav-search nav').offset().top
   });
@@ -299,7 +299,7 @@ $(document).ready(function(){
       autoHideContainer: false,
       limit: 5,
       collapsible: {
-        collapsed: true
+        collapsed: false
       },
       showMore: {
         templates: {
