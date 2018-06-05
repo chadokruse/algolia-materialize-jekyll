@@ -21,7 +21,7 @@ $(document).ready(function(){
     apiKey: 'c6b664e1e04dba1600bd9fe9c1b5bcc0',
     indexName: 'demo',
     numberLocale: 'en-US',
-    urlSync: true,
+    routing: true,
   });
 
   // Define templates
