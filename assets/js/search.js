@@ -442,7 +442,7 @@ ready(function() {
     window.scrollTo({
       top: scrollAnchor.offsetTop,
       left: 0,
-      behavior: 'smooth',
+      behavior: 'auto',
     });
   }
 
