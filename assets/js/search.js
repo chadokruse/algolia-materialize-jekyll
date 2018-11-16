@@ -1,18 +1,32 @@
 ---
 ---
-$(document).ready(function() {
+function ready(fn) {
+  if (document.attachEvent ? document.readyState === 'complete' : document.readyState !== 'loading') {
+    fn();
+  } else {
+    document.addEventListener('DOMContentLoaded', fn);
+  }
+}
+
+ready(function() {
   // Initialize Materialize components
   // Note: if the element is created dynamically via Instantsearch widget,
   // the plugin needs to be initialized in the normal Instantsearch workflow
   // using the render method (e.g. search.once('render'...)
-  $('.parallax').parallax();
-  $('.sidenav').sidenav();
-  $('.nav-search nav').pushpin({
-    top: $('.nav-search nav').offset().top
-  });
+  const elemsPA = document.querySelectorAll('.parallax');
+  M.Parallax.init(elemsPA);
+
+  const elemsSN = document.querySelectorAll('.sidenav');
+  M.Sidenav.init(elemsSN);
+
+  const elemPP = document.querySelector('.nav-search nav');
+  const optionsPP = {
+    top: elemPP.offsetTop,
+  };
+  M.Pushpin.init(elemPP, optionsPP);
 
   // Helper definitions
-  const scrollAnchor = $('.nav-search').offset().top;
+  const scrollAnchor = document.querySelector('.nav-search');
   // const isMobile = window.matchMedia('only screen and (max-width: 992px)');
 
   // Algolia Instantsearch init
@@ -416,15 +430,20 @@ $(document).ready(function() {
 
   // Initialize Materialize JS components
   search.once('render', function() {
-    $('select').formSelect();
+    const elems = document.querySelectorAll('select');
+    M.FormSelect.init(elems);
   });
 
   // Initialize search
   search.start();
 
-  // Scroll to top upon input change
+  // Scroll to top of results upon input change
   function readyToSearchScrollPosition() {
-    $('html, body').animate({scrollTop: scrollAnchor}, '500', 'swing');
+    window.scrollTo({
+      top: scrollAnchor.offsetTop,
+      left: 0,
+      behavior: 'smooth',
+    });
   }
 
   // Helper functions
