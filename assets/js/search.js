@@ -1,6 +1,6 @@
 ---
 ---
-$(document).ready(function(){
+$(document).ready(function() {
   // Initialize Materialize components
   // Note: if the element is created dynamically via Instantsearch widget,
   // the plugin needs to be initialized in the normal Instantsearch workflow
@@ -13,7 +13,7 @@ $(document).ready(function(){
 
   // Helper definitions
   const scrollAnchor = $('.nav-search').offset().top;
-  const isMobile = window.matchMedia('only screen and (max-width: 992px)');
+  // const isMobile = window.matchMedia('only screen and (max-width: 992px)');
 
   // Algolia Instantsearch init
   const search = instantsearch({
@@ -36,6 +36,11 @@ $(document).ready(function(){
   // Define color palette
   const widgetHeaderClasses = ['card-header', 'grey', 'lighten-4'];
 
+  // Helper variables - see also helper functions at bottom
+  const formatter = new Intl.NumberFormat('en-US', {
+    style: 'decimal',
+    minimumFractionDigits: 0,
+  });
 
   // Construct widgets
   search.addWidget(
@@ -43,10 +48,10 @@ $(document).ready(function(){
       container: '#ais-widget-search-box',
       poweredBy: true,
       reset: true,
-      queryHook: function(query, search) {
+      queryHook: function(query, searchNew) {
         readyToSearchScrollPosition();
-        search(query);
-      }
+        searchNew(query);
+      },
     })
   );
 
@@ -55,7 +60,7 @@ $(document).ready(function(){
       container: '#ais-widget-stats',
       autoHideContainer: false,
       cssClasses: {
-        time: 'small text-muted-max'
+        time: 'small text-muted-max',
       },
     })
   );
@@ -64,12 +69,12 @@ $(document).ready(function(){
     instantsearch.widgets.sortBySelector({
       container: '#ais-widget-sort-by',
       cssClasses: {
-        root: 'input-field'
+        root: 'input-field',
       },
       indices: [
         {name: 'demo', label: 'Most relevant'},
         {name: 'demo_amount_desc', label: 'Grant size'},
-      ]
+      ],
     })
   );
 
@@ -82,13 +87,13 @@ $(document).ready(function(){
         allItems: templateHits,
       },
       transformData: function(arr) {
-        for (var i = 0, len = arr.hits.length; i < len; i++) {
+        for (let i = 0, len = arr.hits.length; i < len; i++) {
           let n = arr.hits[i].grant_amount;
           let formattedNumber = '$' + formatter.format(n);
           arr.hits[i].grant_amount = formattedNumber;
         }
         return arr;
-      }
+      },
     })
   );
 
@@ -98,7 +103,7 @@ $(document).ready(function(){
       attributeName: 'grant_purpose',
       limit: 5,
       collapsible: {
-        collapsed: true
+        collapsed: true,
       },
       showMore: {
         templates: {
@@ -116,7 +121,7 @@ $(document).ready(function(){
       },
       transformData: function(item) {
         return formatRefinements(item);
-      }
+      },
     })
   );
 
@@ -127,7 +132,7 @@ $(document).ready(function(){
       sortBy: ['name:desc'],
       limit: 5,
       collapsible: {
-        collapsed: true
+        collapsed: true,
       },
       showMore: {
         templates: {
@@ -145,9 +150,9 @@ $(document).ready(function(){
       },
       transformData: function(item) {
         return formatRefinements(item);
-      }
+      },
     })
-  )
+  );
 
   search.addWidget(
     instantsearch.widgets.refinementList({
@@ -155,7 +160,7 @@ $(document).ready(function(){
       attributeName: 'grantee_state',
       limit: 5,
       collapsible: {
-        collapsed: true
+        collapsed: true,
       },
       showMore: {
         templates: {
@@ -173,7 +178,7 @@ $(document).ready(function(){
       },
       transformData: function(item) {
         return formatRefinements(item);
-      }
+      },
     })
   );
 
@@ -183,7 +188,7 @@ $(document).ready(function(){
       attributeName: 'grantee_city',
       limit: 5,
       collapsible: {
-        collapsed: true
+        collapsed: true,
       },
       showMore: {
         templates: {
@@ -201,7 +206,7 @@ $(document).ready(function(){
       },
       transformData: function(item) {
         return formatRefinements(item);
-      }
+      },
     })
   );
 
@@ -210,19 +215,19 @@ $(document).ready(function(){
       container: '#ais-widget-range-slider',
       attributeName: 'grant_amount',
       collapsible: {
-        collapsed: true
+        collapsed: true,
       },
       cssClasses: {
         header: widgetHeaderClasses,
         body: 'card-content',
       },
       templates: {
-        header: 'Amount' + templateRefinementHeader
+        header: 'Amount' + templateRefinementHeader,
       },
       tooltips: {
         format: function(rawValue) {
           return '$' + Math.round(rawValue).toLocaleString();
-        }
+        },
       },
       pips: false,
     })
@@ -242,7 +247,7 @@ $(document).ready(function(){
       ],
       cssClasses: {
         link: ['waves-effect', 'btn', 'btn-custom', 'btn-clear-refinements', 'blue-grey', 'lighten-4'],
-        clearAll: ['waves-effect', 'btn', 'btn-custom', 'btn-clear-refinements']
+        clearAll: ['waves-effect', 'btn', 'btn-custom', 'btn-clear-refinements'],
       },
       templates: {
         item: templateCurrentRefinedValues,
@@ -254,13 +259,13 @@ $(document).ready(function(){
     instantsearch.widgets.clearAll({
       container: '#ais-widget-clear-all',
       templates: {
-        link: 'Clear all'
+        link: 'Clear all',
       },
       autoHideContainer: false,
       clearsQuery: true,
       cssClasses: {
-        root: ['btn', 'btn-custom', 'waves-effect','waves-light', 'white-text'],
-      }
+        root: ['btn', 'btn-custom', 'waves-effect', 'waves-light', 'white-text'],
+      },
     })
   );
 
@@ -274,8 +279,8 @@ $(document).ready(function(){
         root: 'pagination',
         page: 'waves-effect',
         active: 'active',
-        disabled: 'disabled'
-      }
+        disabled: 'disabled',
+      },
     })
   );
 
@@ -285,7 +290,7 @@ $(document).ready(function(){
     instantsearch.widgets.clearAll({
       container: '#ais-widget-mobile-clear-all',
       templates: {
-        link: '<a class="waves-effect waves-light btn btn grey lighten-5 grey-text text-darken-3">Clear</a>'
+        link: '<a class="waves-effect waves-light btn btn grey lighten-5 grey-text text-darken-3">Clear</a>',
       },
       autoHideContainer: false,
       clearsQuery: true,
@@ -299,7 +304,7 @@ $(document).ready(function(){
       autoHideContainer: false,
       limit: 5,
       collapsible: {
-        collapsed: false
+        collapsed: false,
       },
       showMore: {
         templates: {
@@ -317,7 +322,7 @@ $(document).ready(function(){
       },
       transformData: function(item) {
         return formatRefinements(item);
-      }
+      },
     })
   );
 
@@ -329,7 +334,7 @@ $(document).ready(function(){
       sortBy: ['name:desc'],
       limit: 5,
       collapsible: {
-        collapsed: true
+        collapsed: true,
       },
       showMore: {
         templates: {
@@ -347,9 +352,9 @@ $(document).ready(function(){
       },
       transformData: function(item) {
         return formatRefinements(item);
-      }
+      },
     })
-  )
+  );
 
   search.addWidget(
     instantsearch.widgets.refinementList({
@@ -358,7 +363,7 @@ $(document).ready(function(){
       autoHideContainer: false,
       limit: 5,
       collapsible: {
-        collapsed: true
+        collapsed: true,
       },
       showMore: {
         templates: {
@@ -376,7 +381,7 @@ $(document).ready(function(){
       },
       transformData: function(item) {
         return formatRefinements(item);
-      }
+      },
     })
   );
 
@@ -387,7 +392,7 @@ $(document).ready(function(){
       autoHideContainer: false,
       limit: 5,
       collapsible: {
-        collapsed: true
+        collapsed: true,
       },
       showMore: {
         templates: {
@@ -405,12 +410,12 @@ $(document).ready(function(){
       },
       transformData: function(item) {
         return formatRefinements(item);
-      }
+      },
     })
   );
 
   // Initialize Materialize JS components
-  search.once('render', function(){
+  search.once('render', function() {
     $('select').formSelect();
   });
 
@@ -423,9 +428,9 @@ $(document).ready(function(){
   }
 
   // Helper functions
-  function slugify (text) {
+  function slugify(text) {
     return text.toLowerCase().replace(/-+/g, '').replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-  };
+  }
 
   function randomId() {
     return Math.random()
@@ -433,11 +438,7 @@ $(document).ready(function(){
       .substr(2, 10);
   }
 
-  const formatter = new Intl.NumberFormat('en-US', {
-    'style': 'decimal',
-    'minimumFractionDigits': 0,
-  });
-
+  /* Not currently used
   function formatNumbersOnly(item) {
     // Format numbers
     let n = item.grant_amount;
@@ -445,6 +446,7 @@ $(document).ready(function(){
     item.grant_amount = formattedNumber;
     return item;
   }
+  */
 
   function formatRefinements(item) {
     // Format numbers
@@ -452,12 +454,12 @@ $(document).ready(function(){
     let formattedNumber = formatter.format(n);
     item.count = formattedNumber;
     // Ensure css IDs are properly formatted and unique
-    if(item.label) {
+    if (item.label) {
       item.cssId = 'id-' + slugify(item.label);
     } else {
       // Fallback
       item.cssId = 'id-' + randomId();
     }
-  return item;
-}
+    return item;
+  }
 });

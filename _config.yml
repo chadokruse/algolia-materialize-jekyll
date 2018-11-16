@@ -25,3 +25,4 @@ exclude:
   - LICENSE.md
   - README.md
   - test-data-for-algolia-upload.json
+  - node_modules
