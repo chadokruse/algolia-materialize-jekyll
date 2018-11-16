@@ -124,6 +124,9 @@ nav.nav-center ul.ul-center li .ais-search-box {
   width: 100%;
   z-index: 3;
 }
+.nav-search nav.pinned > * {
+  -webkit-transform: translateZ(0);
+}
 @media screen and (min-width: 993px) {
   .ais-search-box {
     max-width: 400px;
