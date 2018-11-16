@@ -13,8 +13,6 @@ I use the template primarily for prototyping purposes, thus robust browser suppo
 ### Bugs & Roadmap
 There are a few known bugs and a relatively short wish list (primarily mobile related), all of which are listed in [this Waffle board](https://waffle.io/chadokruse/algolia-materialize-jekyll).
 
-The project was updated to use Materialize 1.0, which is still currently in alpha. Rollback to [this commit](https://github.com/chadokruse/algolia-materialize-jekyll/commit/a1ddca050a006974ad2503ed72a8ce494c549112) to use the latest non-alpha version of Materialize (v0.100.2).
-
 ### Screenshot & Demo
 [Live demo](https://www.chadkruse.com/algolia-materialize-jekyll/)
 
