@@ -9,6 +9,9 @@ function ready(fn) {
 }
 
 ready(function() {
+  // Helper definitions
+  const scrollAnchor = document.querySelector('.nav-search');
+  const isMobile = window.matchMedia('only screen and (max-width: 992px)');
   // Initialize Materialize components
   // Note: if the element is created dynamically via Instantsearch widget,
   // the plugin needs to be initialized in the normal Instantsearch workflow
@@ -19,15 +22,13 @@ ready(function() {
   const elemsSN = document.querySelectorAll('.sidenav');
   M.Sidenav.init(elemsSN);
 
-  const elemPP = document.querySelector('.nav-search nav');
-  const optionsPP = {
-    top: elemPP.offsetTop,
-  };
-  M.Pushpin.init(elemPP, optionsPP);
-
-  // Helper definitions
-  const scrollAnchor = document.querySelector('.nav-search');
-  // const isMobile = window.matchMedia('only screen and (max-width: 992px)');
+  if (!isMobile.matches) { // Use pushpin on desktop only
+    const elemPP = document.querySelector('.nav-search nav');
+    const optionsPP = {
+      top: elemPP.offsetTop,
+    };
+    M.Pushpin.init(elemPP, optionsPP);
+  }
 
   // Algolia Instantsearch init
   const search = instantsearch({
